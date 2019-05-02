@@ -80,6 +80,8 @@ pip3 install -r backend/requirements.txt
 * "marshmallow-sqlalchemy" is used to use Marshmallows to serialized SqlAlchemy query results.
 
 # APIs
+Here you can find the contract of all APIs that are developed in this project.
+It includes CRUD APIs for Agency and Ad (Task 1), Geographical API (Task 2 Part 1) and Subset listing (Task2 Part 2).
 ## Create a new agency
 ### Request
 ```bash
