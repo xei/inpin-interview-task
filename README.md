@@ -78,3 +78,87 @@ pip3 install -r backend/requirements.txt
 * "flask-sqlalchemy" is used as an ORM.
 * "flask-marshmallows" is used as a Json serializer/deserializer.
 * "marshmallow-sqlalchemy" is used to use Marshmallows to serialized SqlAlchemy query results.
+
+# APIs
+## Create a new agency
+### Request
+```bash
+curl --request POST \
+  --url http://127.0.0.1:5000/agency \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  --form 'name=Agency #2' \
+  --form 'parent_id =1'
+  ```
+  * 'parent_id' should be null for root agencies.
+### Response
+```json
+{"msg" : "New agency created successfully."}
+```
+## Read an existing agency
+### Request
+```bash
+curl --request GET \
+  --url http://127.0.0.1:5000/agency/1 \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+### Response
+```json
+{
+    "id": 2,
+    "name": "Agency #2",
+    "parent_id": 1
+}
+```
+## Read all agencies
+### Request
+```bash
+curl --request GET \
+  --url http://127.0.0.1:5000/agency \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+### Response
+```json
+[
+    {
+        "id": 1,
+        "name": "Agency #1",
+        "parent_id": null
+    },
+    {
+        "id": 2,
+        "name": "Agency #2",
+        "parent_id": 1
+    }
+]
+```
+## Update an existing agency
+### Request
+```bash
+curl --request PUT \
+  --url http://127.0.0.1:5000/agency/2 \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  --form 'name=Iran Agency' \
+  --form parent_id=4
+```
+### Response
+```json
+{"msg" : "Agency updated successfully."}
+```
+## Delete an existing agency
+### Request
+```bash
+curl --request DELETE \
+  --url http://127.0.0.1:5000/agency/2 \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+### Response
+```json
+{"msg" : "Agency deleted successfully."}
+```
