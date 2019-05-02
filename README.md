@@ -162,3 +162,143 @@ curl --request DELETE \
 ```json
 {"msg" : "Agency deleted successfully."}
 ```
+## Create a new ad
+### Request
+```bash
+curl --request POST \
+  --url http://127.0.0.1:5000/ad \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  --form agency_id=2 \
+  --form 'name=a modern house' \
+  --form latitude=35.7719533 \
+  --form longitude=51.424691
+```
+### Response
+```json
+{"msg" : "Ad created successfully."}
+```
+## Read an existing ad
+### Request
+```bash
+curl --request GET \
+  --url http://127.0.0.1:5000/ad/1 \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+### Response
+```json
+{
+    "agency_id": 2,
+    "latitude": 35.7719533,
+    "longitude": 51.424691,
+    "name": "a modern house"
+}
+```
+## Read all existing ads
+### Request
+```bash
+curl --request GET \
+  --url http://127.0.0.1:5000/ad \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+### Response
+```json
+[
+    {
+        "agency_id": 2,
+        "latitude": 35.789371,
+        "longitude": 51.466271,
+        "name": "a modern house"
+    },
+    {
+        "agency_id": 2,
+        "latitude": 35.789317,
+        "longitude": 51.462617,
+        "name": "an old house"
+    }
+]
+```
+## Read an agency (and it's subsets) ads
+### Request
+```bash
+curl --request GET \
+  --url 'http://127.0.0.1:5000/ad?agency=2&sub=true' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+* 'sub=true' argument adds the ads belong to the subsets of an agency. We can ommit that to list exclusive ads. 
+### Response
+```json
+[
+    {
+        "agency_id": 2,
+        "latitude": 35.789371,
+        "longitude": 51.466271,
+        "name": "a modern house"
+    },
+    {
+        "agency_id": 2,
+        "latitude": 35.789317,
+        "longitude": 51.462617,
+        "name": "an old house"
+    }
+]
+```
+## Read near ads
+### Request
+```bash
+curl --request GET \
+  --url 'http://127.0.0.1:5000/ad?lat=35.771949&lon=51.426885&dist=1' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+* This API should list all the ads inside a circle around the location('lat', 'lon') with radius 'dist' Killometer.
+### Response
+```json
+[
+    {
+        "agency_id": 2,
+        "latitude": 35.789371,
+        "longitude": 51.466271,
+        "name": "a modern house"
+    },
+    {
+        "agency_id": 2,
+        "latitude": 35.789317,
+        "longitude": 51.462617,
+        "name": "an old house"
+    }
+]
+```
+## Update an existing ad
+### Request
+```bash
+curl --request PUT \
+  --url http://127.0.0.1:5000/ad/2 \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  --form agency_id=3 \
+  --form 'name=Comfortable Room' \
+  --form latitude=35.7719533 \
+  --form longitude=51.424691
+```
+### Response
+```json
+{"msg" : "Ad updated successfully."}
+```
+## Delete an existing ad
+### Request
+```bash
+curl --request DELETE \
+  --url http://127.0.0.1:5000/ad/2 \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'cache-control: no-cache'
+```
+### Response
+```json
+{"msg" : "Ad deleted successfully."}
+```
