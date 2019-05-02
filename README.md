@@ -41,3 +41,30 @@ You should make a git repository (perhaps GitHub will be a good choice) and comm
 </p>
 * The datatype decimal(10, 8) is used to store latitide (-180 ~ +180) and the dayatype decimal(11, 8) is used to store longitide (-90 ~ +90) values accurately.
 * The website https://app.sqldbm.com is used to design the database.
+
+## Database Design: DDL Script
+* The following SQL commands are auto-generated from above ER diagram to create database and tables in MySQL.
+```sql
+CREATE DATABASE inpin_db;
+USE inpin_db;
+
+CREATE TABLE `agency` (
+	`id` bigint(20) NOT NULL AUTO_INCREMENT,
+	`parent_id` bigint(20) DEFAULT NULL,
+	`name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	KEY `fkIdx_1` (`parent_id`),
+	CONSTRAINT `sub_agency` FOREIGN KEY `fkIdx_1` (`parent_id`) REFERENCES `agency` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `ad` (
+	`id` bigint(20) NOT NULL AUTO_INCREMENT,
+	`agency_id` bigint(20) NOT NULL,
+	`name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+	`latitude` DECIMAL(10, 8),
+	`longitude` DECIMAL(11, 8),
+	PRIMARY KEY (`id`),
+	KEY `fkIdx_2` (`agency_id`),
+	CONSTRAINT `has` FOREIGN KEY `fkIdx_2` (`agency_id`) REFERENCES `agency` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```
