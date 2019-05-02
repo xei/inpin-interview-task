@@ -36,6 +36,8 @@ You should make a git repository (perhaps GitHub will be a good choice) and comm
 ##### You will get extra 100 points if you will do all with TDD and dockerize :D.
 
 ## Database Design: ER Diagram
-![alt text](backend/database_design/ERD.png)
-* Datatype decimal(10, 8) is used to store latitide (-180 ~ +180) and the dayatype decimal(11, 8) is used to store longitide (-90 ~ +90) values accurately.
+<p align="center">
+  <img src="backend/database_design/ERD.png?raw=true" alt="ER Diagram"/>
+</p>
+* The datatype decimal(10, 8) is used to store latitide (-180 ~ +180) and the dayatype decimal(11, 8) is used to store longitide (-90 ~ +90) values accurately.
 * The website https://app.sqldbm.com is used to design the database.
