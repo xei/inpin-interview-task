@@ -1,7 +1,8 @@
-from app import db
+from app import db, ma
 from sqlalchemy import Column, DECIMAL, ForeignKey
 from sqlalchemy.dialects.mysql import BIGINT, VARCHAR
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.hybrid import hybrid_method
 
 
 class Ad(db.Model):
@@ -20,3 +21,13 @@ class Ad(db.Model):
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
+
+
+class AdSchema(ma.Schema):
+    class Meta:
+        # Fields to expose
+        fields = ('id', 'agency_id', 'name', 'latitude', 'longitude')
+
+
+ad_schema = AdSchema()
+ads_schema = AdSchema(many=True)
