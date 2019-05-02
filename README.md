@@ -68,3 +68,13 @@ CREATE TABLE `ad` (
 	CONSTRAINT `has` FOREIGN KEY `fkIdx_2` (`agency_id`) REFERENCES `agency` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
+
+## Install Dependencies
+```bash
+pip3 install -r backend/requirements.txt
+```
+* "Flask" is used as a web micro framework to build RESTful APIs.
+* "pymysql" is used to connect to MySQL database from Python code.
+* "flask-sqlalchemy" is used as an ORM.
+* "flask-marshmallows" is used as a Json serializer/deserializer.
+* "marshmallow-sqlalchemy" is used to use Marshmallows to serialized SqlAlchemy query results.
