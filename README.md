@@ -274,7 +274,7 @@ def find_sub_agencies(agency_id):
   try:
     all_found_agencies.append(agency_id)
     for agency in Agency.query.filter_by(parent_id=agency_id).all():
-    find_sub_agencies(agency_id)
+      find_sub_agencies(agency_id)
   except Exception as e:
     print('error while finding sub-agencies: ' + str(e))
     raise Exception('error while finding sub-agencies: ' + str(e))
