@@ -1,5 +1,6 @@
 from app import db
 from ad import Ad
+from agency_controller import all_found_agencies, find_sub_agencies
 
 def create_add(agency_id, name, latitude, longitude):
 	'''
@@ -51,4 +52,35 @@ def read_all_ads():
 		return ads_json
 	except Exception as e:
 		print('error while reading all ads: ' + str(e))
+		return None
+
+def read_agency_ads(agency_id, show_sub_agencies_ads):
+	'''
+	This function reads, serializes and returns all tupples in Ad table that
+	belongs to a distinct agency (and it's sub-agencies
+	based on the bool variable show_sub_agencies_ads)
+	'''
+	try:
+		if show_sub_agencies_ads:
+			all_found_agencies.clear()
+			find_sub_agencies(int(agency_id))
+			ads = Ad.query.filter(Ad.agency_id.in_(all_found_agencies)).all()
+			ads_json = [{
+				'agency_id' : ad.agency_id,
+				'name': ad.name,
+				'latitude': float(ad.latitude),
+				'longitude': float(ad.longitude)
+			} for ad in ads]
+			return ads_json
+		else:
+			ads = Ad.query.filter_by(agency_id=agency_id).all()
+			ads_json = [{
+				'agency_id' : ad.agency_id,
+				'name': ad.name,
+				'latitude': float(ad.latitude),
+				'longitude': float(ad.longitude)
+			} for ad in ads]
+		return ads_json
+	except Exception as e:
+		print('error while reading agency ads: ' + str(e))
 		return None
