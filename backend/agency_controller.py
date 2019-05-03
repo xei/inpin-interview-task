@@ -11,3 +11,12 @@ def create_agency(name, parent_id):
 	agency = Agency(name, parent_id)
 	db.session.add(agency)
 	db.session.commit()
+
+def read_agency(id):
+	'''
+	This function finds the first tuple with id=id in Agency table,
+	serializes it to json and returns the result.
+	'''
+	agency = Agency.query.filter_by(id=id).first()
+	result = agency_schema.dump(agency)
+	return result.data
