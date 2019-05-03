@@ -293,6 +293,25 @@ curl --request GET \
     }
 ]
 ```
+* To compare the location with all the ads location in the database, we did not use any GIS database or extension. Instead, SqlAlchemy Hybrid methods are used to query from database directly.
+* To approximate the distance between two geographical point, [Great Circle (Orthodromic) distance](https://en.wikipedia.org/wiki/Great-circle_distance) is used as follows:
+```python
+def orthodromic_distance(lat1, lng1, lat2, lng2, math=math):
+  '''
+  to compute the exact distance, we need to use some GIS database
+  (forexample PostgGIS: http://postgis.refractions.net)
+  However, for small distances like local map we can approximate it well
+  in minimal computations using Great Circle Distance (Orthodromic Distance).
+  '''
+    ang = math.acos(math.cos(math.radians(lat1)) *
+                    math.cos(math.radians(lat2)) *
+                    math.cos(math.radians(lng2) -
+                             math.radians(lng1)) +
+                    math.sin(math.radians(lat1)) *
+                    math.sin(math.radians(lat2)))
+
+    return 6371 * ang
+```
 ## Update an existing ad
 ### Request
 ```bash
