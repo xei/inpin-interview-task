@@ -84,3 +84,34 @@ def read_agency_ads(agency_id, show_sub_agencies_ads):
 	except Exception as e:
 		print('error while reading agency ads: ' + str(e))
 		return None
+
+def read_near_ads(latitude, longitude, distance):
+	'''
+	This function reads, serializes and returns all tupples in Ad table that
+	their geographical location is nearer than distance (Killometer) in order.
+	Instead of using GIS database extensions, SqlAlchemy Hybrid method and Great Circle
+	formula are used here to query the database for calculating the distances.
+	'''
+	try:
+		ads = db.session.query(
+        	Ad,
+        	Ad.distance(latitude, longitude).label('distance'),
+        	Ad.agency_id,
+        	Ad.name,
+        	Ad.latitude,
+        	Ad.longitude
+    	).having(db.column('distance') <= distance)
+    	.order_by('distance')
+    	.all()
+		ads_json = [{
+			'agency_id' : ad.agency_id,
+			'name': ad.name,
+			'latitude': float(ad.latitude),
+			'longitude': float(ad.longitude),
+			'distance': ad.distance
+		} for ad in ads]
+		return ads_json
+	except Exception as e:
+		print('error while reading near ads: ' + str(e))
+		return None
+

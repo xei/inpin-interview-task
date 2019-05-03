@@ -3,6 +3,7 @@ from sqlalchemy import Column, DECIMAL, ForeignKey
 from sqlalchemy.dialects.mysql import BIGINT, VARCHAR
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_method
+from gis import orthodromic_distance
 
 
 class Ad(db.Model):
@@ -21,6 +22,14 @@ class Ad(db.Model):
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
+
+    @hybrid_method
+    def distance(self, lat, lng):
+        return orthodromic_distance(lat, lng, self.latitude, self.longitude)
+
+    @distance.expression
+    def distance(cls, lat, lng):
+        return orthodromic_distance(lat, lng, cls.latitude, cls.longitude, math=db.func)
 
 
 class AdSchema(ma.Schema):
