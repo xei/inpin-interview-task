@@ -115,3 +115,21 @@ def read_near_ads(latitude, longitude, distance):
 		print('error while reading near ads: ' + str(e))
 		return None
 
+def update_ad(id, new_agency_id, new_name, new_latitude, new_longitude):
+	'''
+	This function finds the first tupple with id=id in Ad table
+	and update it's columns.
+	return 0 means everything accomplished successfully.
+	return 1 means the operation was unsuccessfull.
+	'''
+	try:
+		ad = Ad.query.filter_by(id=id).first()
+		ad.agency_id = new_agency_id
+		ad.name = new_name
+		ad.latitude = new_latitude
+		ad.longitude = new_longitude
+		db.session.commit()
+		return 0
+	except Exception as e:
+		print('error while updating the ad: ' + str(e))
+		return 1
