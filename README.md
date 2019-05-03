@@ -249,6 +249,24 @@ curl --request GET \
     }
 ]
 ```
+* To find all subsets of an agency in the hierarchical tree, a Backtracking algorithms has been implemented like bellow:
+```python
+all_found_agencies = []
+def find_sub_agencies(agency_id):
+  '''
+  This function implements a Backtracking algorithm
+  to find all sub-agencies of an agency.
+  ID of all sub-agencies, including the agency itself are stored
+  in the list all_found_agencies.
+  '''
+  try:
+    all_found_agencies.append(agency_id)
+  for agency in Agency.query.filter_by(parent_id=agency_id).all():
+    find_sub_agencies(agency_id)
+  except Exception as e:
+    print('error while finding sub-agencies: ' + str(e))
+    raise Exception('error while finding sub-agencies: ' + str(e))
+```
 ## Read near ads
 ### Request
 ```bash
