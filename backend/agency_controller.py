@@ -28,3 +28,14 @@ def read_all_agencies():
 	all_agencies = Agency.query.all()
 	result = agencies_schema.dump(all_agencies)
 	return result.data
+
+def update_agency(id, new_name, new_parent_id):
+	'''
+	This function finds the first tupple with id=id in Agency table
+	and update it's columns.
+	'''
+	agency = Agency.query.filter_by(id=id).first()
+	agency.name = new_name
+	agency.parent_id = new_parent_id
+	db.session.commit()
+	return 0
