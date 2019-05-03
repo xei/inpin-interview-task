@@ -139,7 +139,7 @@ def make_msg_response(succeed, msg):
 	successful/unsuccessful mesage to client app.
 	'''
 	return {
-		'status' : bool(succeed)
+		'status' : bool(succeed),
 		'msg' : msg
 	}
 
