@@ -96,7 +96,10 @@ curl --request POST \
   * 'parent_id' should be null for root agencies.
 ### Response
 ```json
-{"msg" : "New agency created successfully."}
+{
+  "status" : true,
+  "msg" : "Agency created successfully."
+}
 ```
 ## Read an existing agency
 ### Request
@@ -150,7 +153,10 @@ curl --request PUT \
 ```
 ### Response
 ```json
-{"msg" : "Agency updated successfully."}
+{
+  "status" : true,
+  "msg" : "Agency updated successfully."
+}
 ```
 ## Delete an existing agency
 ### Request
@@ -162,7 +168,10 @@ curl --request DELETE \
 ```
 ### Response
 ```json
-{"msg" : "Agency deleted successfully."}
+{
+  "status" : true,
+  "msg" : "Agency deleted successfully."
+}
 ```
 ## Create a new ad
 ### Request
@@ -179,7 +188,10 @@ curl --request POST \
 ```
 ### Response
 ```json
-{"msg" : "Ad created successfully."}
+{
+  "status" : true,
+  "msg" : "Ad created successfully."
+}
 ```
 ## Read an existing ad
 ### Request
@@ -327,7 +339,10 @@ curl --request PUT \
 ```
 ### Response
 ```json
-{"msg" : "Ad updated successfully."}
+{
+  "status" : true,
+  "msg" : "Ad updated successfully."
+}
 ```
 ## Delete an existing ad
 ### Request
@@ -339,5 +354,8 @@ curl --request DELETE \
 ```
 ### Response
 ```json
-{"msg" : "Ad deleted successfully."}
+{
+  "status" : true,
+  "msg" : "Ad deleted successfully."
+}
 ```
