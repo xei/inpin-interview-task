@@ -1,7 +1,7 @@
 from app import app
 from flask import jsonify, request
-import agency_controller
-import ad_controller
+from agency_controller import *
+from ad_controller import *
 
 
 @app.route('/agency', defaults={'id': None}, methods=['GET', 'POST'])
@@ -80,10 +80,11 @@ def ad_view(id):
 					# argument 'sub' is not provided.
 					# so use it's default value (False)
 					pass
-				return jsonify(read_agency_ads(agency_id, list_sub_agencies_ads))
+				return jsonify(read_agency_ads(agency_id, show_sub_agencies_ads))
 			except Exception as e:
 				# argument 'agency' is not provided
 				# so the response should be independant from any agencies.
+				print(str(e))
 				try:
 					latitude = float(request.args['lat'])
 					longitude = float(request.args['lon'])

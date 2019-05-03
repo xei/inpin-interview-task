@@ -65,7 +65,7 @@ def delete_agency(id):
 	return 1 means the operation was unsuccessfull.
 	'''
 	try:
-		ageny = Agency.query.filter_by(id=id).first()
+		agency = Agency.query.filter_by(id=id).first()
 		db.session.delete(agency)
 		db.session.commit()
 		return 0
@@ -84,7 +84,7 @@ def find_sub_agencies(agency_id):
 	try:
 		all_found_agencies.append(agency_id)
 		for agency in Agency.query.filter_by(parent_id=agency_id).all():
-			find_sub_agencies(agency_id)
+			find_sub_agencies(agency.id)
 	except Exception as e:
 		print('error while finding sub-agencies: ' + str(e))
 		raise Exception('error while finding sub-agencies: ' + str(e))

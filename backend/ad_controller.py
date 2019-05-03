@@ -2,7 +2,7 @@ from app import db
 from ad import Ad
 from agency_controller import all_found_agencies, find_sub_agencies
 
-def create_add(agency_id, name, latitude, longitude):
+def create_ad(agency_id, name, latitude, longitude):
 	'''
 	This function creates a new tupple in Ad table.
 	return 0 means everything accomplished successfully.
@@ -94,22 +94,20 @@ def read_near_ads(latitude, longitude, distance):
 	'''
 	try:
 		ads = db.session.query(
-        	Ad,
-        	Ad.distance(latitude, longitude).label('distance'),
-        	Ad.agency_id,
-        	Ad.name,
-        	Ad.latitude,
-        	Ad.longitude
-    	).having(db.column('distance') <= distance)
-    	.order_by('distance')
-    	.all()
+			Ad,
+			Ad.distance(latitude, longitude).label('distance'),
+			Ad.agency_id,
+			Ad.name,
+			Ad.latitude,
+			Ad.longitude
+		).having(db.column('distance') <= distance).order_by('distance').all()
 		ads_json = [{
-			'agency_id' : ad.agency_id,
-			'name': ad.name,
-			'latitude': float(ad.latitude),
-			'longitude': float(ad.longitude),
-			'distance': ad.distance
-		} for ad in ads]
+		'agency_id' : ad.agency_id,
+		'name': ad.name,
+    	'latitude': float(ad.latitude),
+    	'longitude': float(ad.longitude),
+    	'distance': ad.distance
+    	} for ad in ads]
 		return ads_json
 	except Exception as e:
 		print('error while reading near ads: ' + str(e))
