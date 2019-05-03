@@ -1,0 +1,46 @@
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+        <TextView
+                android:id="@+id/textView_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:textSize="20sp"
+                android:textColor="#4e4e4e"/>
+        <ImageView
+                android:id="@+id/imageView_delete"
+                android:layout_width="48dp"
+                android:padding="8dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_delete"/>
+
+        <ImageView
+                android:id="@+id/imageView_edit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:layout_toLeftOf="@+id/imageView_delete"
+                android:layout_marginRight="4dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_edit"/>
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
