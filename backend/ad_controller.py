@@ -35,3 +35,20 @@ def read_ad(id):
 	except Exception as e:
 		print('error while reading the ad: ' + str(e))
 		return None
+
+def read_all_ads():
+	'''
+	This function reads, serializes and returns all the tupples in Ad table.
+	'''
+	try:
+		ads = Ad.query.all()
+		ads_json = [{
+			'agency_id' : ad.agency_id,
+			'name': ad.name,
+			'latitude': float(ad.latitude),
+			'longitude': float(ad.longitude)
+		} for ad in ads]
+		return ads_json
+	except Exception as e:
+		print('error while reading all ads: ' + str(e))
+		return None
