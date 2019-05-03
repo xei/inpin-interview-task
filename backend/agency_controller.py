@@ -20,3 +20,11 @@ def read_agency(id):
 	agency = Agency.query.filter_by(id=id).first()
 	result = agency_schema.dump(agency)
 	return result.data
+
+def read_all_agencies():
+	'''
+	This function reads, serializes and returns all the tupples in Agency table.
+	'''
+	all_agencies = Agency.query.all()
+	result = agencies_schema.dump(all_agencies)
+	return result.data
