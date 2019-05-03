@@ -1,8 +1,5 @@
-# from app import app
 from app import db
-# from flask import jsonify, request
 from agency import Agency, agency_schema, agencies_schema
-# from ad import Ad, ad_schema, ads_schema
 
 def create_agency(name, parent_id):
 	'''
@@ -18,7 +15,6 @@ def create_agency(name, parent_id):
 	except Exception as e:
 		print('error while creating the agency: ' + str(e))
 		return 1
-	
 
 def read_agency(id):
 	'''
@@ -62,4 +58,17 @@ def update_agency(id, new_name, new_parent_id):
 		print('error while updating the agency: ' + str(e))
 		return 1
 	
-	
+def delete_agency(id):
+	'''
+	This function deletes the first tuple with id=id in Agency table.
+	return 0 means everything accomplished successfully.
+	return 1 means the operation was unsuccessfull.
+	'''
+	try:
+		ageny = Agency.query.filter_by(id=id).first()
+		db.session.delete(agency)
+		db.session.commit()
+		return 0
+	except Exception as e:
+		print('error while deleting the agency: ' + str(e))
+		return 1
