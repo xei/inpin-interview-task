@@ -133,3 +133,18 @@ def update_ad(id, new_agency_id, new_name, new_latitude, new_longitude):
 	except Exception as e:
 		print('error while updating the ad: ' + str(e))
 		return 1
+
+def delete_ad(id):
+	'''
+	This function deletes the first tuple with id=id in Ad table.
+	return 0 means everything accomplished successfully.
+	return 1 means the operation was unsuccessfull.
+	'''
+	try:
+		ad = Ad.query.filter_by(id=id).first()
+		db.session.delete(ad)
+		db.session.commit()
+		return 0
+	except Exception as e:
+		print('error while deleting the ad: ' + str(e))
+		return 1
