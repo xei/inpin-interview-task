@@ -359,3 +359,8 @@ curl --request DELETE \
   "msg" : "Ad deleted successfully."
 }
 ```
+# Run the backend app
+In ordedr to start the backend app, run the folowing command
+```bash
+python3 backend/main.py
+```
