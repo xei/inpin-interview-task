@@ -364,3 +364,13 @@ In ordedr to start the backend app, run the folowing command
 ```bash
 python3 backend/main.py
 ```
+# Mobile App
+A fancy (without any architecture) Android application is written to test the backend APIs.
+The APK file of the Android app is available [here](mobile/app.apk)
+## Screenshots
+<p align="center">
+  <img src="mobile/screenshots/01_launch_screen.png?raw=true" alt="Launch Screen"/>
+  <img src="mobile/screenshots/01_agencies_list.png?raw=true" alt="Agencies List"/>
+  <img src="mobile/screenshots/03_add_new_agency.png?raw=true" alt="Add New Agency"/>
+  <img src="mobile/screenshots/04_update_agency.png?raw=true" alt="Update Agency"/>
+</p>
