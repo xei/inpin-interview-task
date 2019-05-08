@@ -364,6 +364,12 @@ In ordedr to start the backend app, run the folowing command
 ```bash
 python3 backend/main.py
 ```
+# Test the backend app
+You can run test cases such as:
+```bash
+python3 backend/tests_api_agency.py
+```
+
 # Mobile App
 A fancy (without any architecture) Android application is written to test the backend APIs.
 The APK file of the Android app is available [here](mobile/app.apk)
