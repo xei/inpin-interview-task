@@ -68,6 +68,10 @@ CREATE TABLE `ad` (
 	CONSTRAINT `has` FOREIGN KEY `fkIdx_2` (`agency_id`) REFERENCES `agency` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
+* However, you don't need to use the above SQL commands at all. a Python script named create_db.py will create the database and it's tables for you. Just run the following command:
+```bash
+python3 backend/create_db.py
+```
 
 ## Install Dependencies
 ```bash
