@@ -373,6 +373,13 @@ You can run test cases such as:
 ```bash
 python3 backend/tests_api_agency.py
 ```
+Also you can use coverage module to measure code coverage of test cases:
+```bash
+Name                   Stmts   Miss  Cover
+------------------------------------------
+agency_controller.py      55     37    33%
+
+```
 
 # Mobile App
 A not-fancy (without any architectural patterns) Android application is written to test the backend APIs.
