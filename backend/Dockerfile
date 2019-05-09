@@ -13,5 +13,7 @@ RUN pip3 install -r requirements.txt
 
 COPY . /inpin
 
+RUN python3 create_db.py
+
 ENTRYPOINT ["python3"]
 CMD ["main.py"]
