@@ -368,6 +368,11 @@ In ordedr to start the backend app, run the folowing command
 ```bash
 python3 backend/main.py
 ```
+You can also use [docker-ce](https://docs.docker.com/install/linux/docker-ce/ubuntu/) from backend directory to build a Docker image and run the Docker container through a Docker engine:
+```bash
+docker build -t inpin-backend:latest .
+docker run -d -p 5000:5000 inpin-backend
+```
 # Test the backend app
 You can run test cases such as:
 ```bash
