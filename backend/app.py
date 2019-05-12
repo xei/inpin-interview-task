@@ -4,7 +4,7 @@ from flask_marshmallow import Marshmallow
 
 DB_USER = 'root'
 DB_PASS = '12345678'
-DB_HOST = 'localhost'
+DB_HOST = 'db'
 DB_NAME = 'inpin_db'
 
 app = Flask(__name__)
