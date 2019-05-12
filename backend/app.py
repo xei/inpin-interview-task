@@ -5,7 +5,7 @@ from flask_marshmallow import Marshmallow
 DB_USER = 'root'
 DB_PASS = '12345678'
 DB_HOST = 'db'
-DB_PORT = '3306'
+DB_PORT = '3306'	# The default port for mysql is 3306, So I think we can ommit this.
 DB_NAME = 'inpin_db'
 
 app = Flask(__name__)
