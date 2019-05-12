@@ -1,0 +1,18 @@
+version: "2"
+services:
+  app:
+    build: .
+    links:
+      # db service will be up before app service.
+      - db
+    ports:
+      - "5000:5000"
+
+  db:
+    image: mysql:8.0.16
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+    volumes:
+      - ./database_design:/docker-entrypoint-initdb.d/:ro
