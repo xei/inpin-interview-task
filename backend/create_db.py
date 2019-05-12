@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
-from app import DB_USER, DB_PASS, DB_HOST, DB_NAME, db
+from app import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME, db
 from agency import Agency
 from ad import Ad
 
 # Connect to database server
-db_uri = 'mysql+pymysql://{}:{}@{}'.format(DB_USER, DB_PASS, DB_HOST)
+db_uri = 'mysql+pymysql://{}:{}@{}:{}'.format(DB_USER, DB_PASS, DB_HOST, DB_PORT)
 engine = create_engine(db_uri)
 
 # Create Database
