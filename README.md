@@ -373,6 +373,10 @@ You can also use [docker-ce](https://docs.docker.com/install/linux/docker-ce/ubu
 docker build -t inpin-backend:latest .
 docker run -d -p 5000:5000 inpin-backend
 ```
+The above method needs the MySQL to be up and running, So you can use Docker Compose to do all these stuff:
+```bash
+docker-compose up
+```
 # Test the backend app
 You can run test cases such as:
 ```bash
